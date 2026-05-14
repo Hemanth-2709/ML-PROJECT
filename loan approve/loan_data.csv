@@ -1,0 +1,16 @@
+Income,Credit,Employment,Result
+High,Good,Yes,Approved
+High,Good,No,Approved
+Medium,Good,Yes,Approved
+Low,Bad,No,Rejected
+Low,Good,No,Rejected
+Medium,Bad,Yes,Rejected
+High,Bad,Yes,Approved
+Medium,Good,No,Approved
+Low,Bad,Yes,Rejected
+High,Good,Yes,Approved
+Medium,Bad,No,Rejected
+Low,Good,Yes,Approved
+High,Bad,No,Approved
+Medium,Good,Yes,Approved
+Low,Bad,No,Rejected

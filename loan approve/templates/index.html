@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loan Approval Prediction</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            width: 380px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+            color: #444;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #28a745, #218838);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #218838, #1e7e34);
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .info-box {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f1f1f1;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Loan Approval Prediction</h2>
+
+    <form action="/predict" method="post">
+
+        <!-- Salary -->
+        <label>💰 Salary (Income)</label>
+        <select name="income">
+            <option value="High" {% if income=='High' %}selected{% endif %}>High</option>
+            <option value="Medium" {% if income=='Medium' %}selected{% endif %}>Medium</option>
+            <option value="Low" {% if income=='Low' %}selected{% endif %}>Low</option>
+        </select>
+
+        <div class="info-box">
+            High = Above ₹50K <br>
+            Medium = ₹20K – ₹50K <br>
+            Low = Below ₹20K
+        </div>
+
+        <!-- Credit Score -->
+        <label>💳 Enter Credit Score</label>
+        <input type="number" name="credit_score"
+               value="{{ credit_score if credit_score else '' }}"
+               placeholder="e.g. 720">
+
+        <div class="info-box">
+            Credit ≥ 750 → Good <br>
+            Credit < 750 → Bad
+        </div>
+
+        <!-- Employment -->
+        <label>💼 Employment Status</label>
+        <select name="employment">
+            <option value="Yes" {% if employment=='Yes' %}selected{% endif %}>Yes</option>
+            <option value="No" {% if employment=='No' %}selected{% endif %}>No</option>
+        </select>
+
+        <button type="submit">Predict</button>
+
+    </form>
+
+    {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
